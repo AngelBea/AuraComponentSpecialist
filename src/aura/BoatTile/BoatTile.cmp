@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="boat" type="Boat__c"/>
+    <aura:attribute name="selected" type="Boolean"/>
+    <aura:registerEvent name="boatSelect" type="c:BoatSelect"/>
+    <aura:registerEvent name="PlotMapMarker" type="c:PlotMapMarker"/>
+    <lightning:button class="{!v.selected ? 'tile selected' : 'tile'}" onclick="{! c.onBoatClick}">
+        <div style="{! 'background-image: url(&quot;'+ v.boat.Picture__c+'&quot;)'}" class="innertile">
+            <div class="lower-third">
+                <h1 class="slds-truncate">{! v.boat.Contact__r.Name}</h1>
+            </div>
+        </div>
+    </lightning:button>
+</aura:component>

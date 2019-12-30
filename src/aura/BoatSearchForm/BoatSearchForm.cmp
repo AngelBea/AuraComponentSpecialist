@@ -1,0 +1,28 @@
+<aura:component controller = "BoatSearchForm" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="canCreate" type="Boolean"/>
+    <aura:attribute name="boatOptions" type="List"/>
+
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+
+    <aura:registerEvent name="formsubmit" type="c:FormSubmit"/>
+    <lightning:layout horizontalAlign="center" verticalAlign="end" >
+        <lightning:layoutItem padding="horizontal-small" size="2">
+            <lightning:select aura:id = "selection" label="" name="boatType">
+                <option value="" selected="true">All types</option>
+                <aura:iteration items="{! v.boatOptions}" var = "option">
+                    <option value="{! option.Id}">{! option.Name}</option>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem padding="horizontal-small">
+            <lightning:button variant="brand" label="Search" onclick="{! c.onFormSubmit}"/>
+        </lightning:layoutItem>
+
+        <aura:if isTrue="{! v.canCreate}">
+            <lightning:layoutItem  class="searchButton" size="2">
+                <lightning:button variant="neutral" label="New" onclick="{! c.createNewBoat}"/>
+            </lightning:layoutItem>
+        </aura:if>
+    </lightning:layout>
+</aura:component>
